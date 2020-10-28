@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Kotlin_LiveData_DataBinding_Retrofit_MVVM"
