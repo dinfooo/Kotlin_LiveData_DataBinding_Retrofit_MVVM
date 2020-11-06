@@ -1,7 +1,6 @@
 package com.dammak.mahdi.favourites
 
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,9 +30,9 @@ class FavouritesListFragment : Fragment() {
     ): View? {
         val binding: FragmentFavouriteListBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_favourite_list, container, false)
-        binding.textviewWsResponse.movementMethod = ScrollingMovementMethod()
         binding.favouritesListViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.recyclerViewFavouritesList.adapter = FavouriteAdapter()
         return binding.root
     }
 
