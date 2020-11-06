@@ -42,12 +42,12 @@ fun bindRecyclerView(
 @BindingAdapter("android:onClick")
 fun setOnClick(
     view: View,
-    id: Int
+    favourite: Favourite
 ) {
     val clickListener = View.OnClickListener { v ->
         v?.let {
             Snackbar.make(
-                it, "Click detected on favourite $id",
+                it, "Click detected on favourite ${favourite.id}",
                 Snackbar.LENGTH_LONG
             ).setAction("Action", null).show()
         }
