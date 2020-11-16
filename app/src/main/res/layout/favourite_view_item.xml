@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -37,7 +38,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp" />
+                android:layout_marginRight="16dp"
+                app:imageUrl="@{favourite.image.url}"/>
 
             <TextView
                 android:id="@+id/created_at"
