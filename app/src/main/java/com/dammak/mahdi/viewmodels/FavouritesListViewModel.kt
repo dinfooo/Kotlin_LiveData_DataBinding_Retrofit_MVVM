@@ -1,11 +1,11 @@
-package com.dammak.mahdi.favourites
+package com.dammak.mahdi.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dammak.mahdi.data.Favourite
+import com.dammak.mahdi.domain.Favourite
 import com.dammak.mahdi.network.FavouritesApi
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -30,13 +30,16 @@ class FavouritesListViewModel : ViewModel() {
     private fun getFavouriteList() {
         viewModelScope.launch {
             try {
-                _status.value = FavouritesApiStatus.LOADING
+                _status.value =
+                    FavouritesApiStatus.LOADING
                 val listFavourite = FavouritesApi.retrofitService.getAllFavourites()
                 _listFavourite.value = listFavourite
-                _status.value = FavouritesApiStatus.DONE
+                _status.value =
+                    FavouritesApiStatus.DONE
                 Log.d("ws response", "Favourites list :" + listFavourite.toString())
             } catch (e: Exception) {
-                _status.value = FavouritesApiStatus.ERROR
+                _status.value =
+                    FavouritesApiStatus.ERROR
                 Log.d("ws response", "error ws :" + e.message)
             }
         }

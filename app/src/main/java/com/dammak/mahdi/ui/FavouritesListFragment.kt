@@ -1,4 +1,4 @@
-package com.dammak.mahdi.favourites
+package com.dammak.mahdi.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.dammak.mahdi.R
 import com.dammak.mahdi.databinding.FragmentFavouriteListBinding
+import com.dammak.mahdi.viewmodels.FavouritesListViewModel
 
 
 /**
@@ -32,7 +33,8 @@ class FavouritesListFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_favourite_list, container, false)
         binding.favouritesListViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.recyclerViewFavouritesList.adapter = FavouriteAdapter()
+        binding.recyclerViewFavouritesList.adapter =
+            FavouriteAdapter()
         return binding.root
     }
 

@@ -1,4 +1,4 @@
-package com.dammak.mahdi
+package com.dammak.mahdi.util
 
 import android.view.View
 import android.widget.ImageView
@@ -7,9 +7,10 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.dammak.mahdi.data.Favourite
-import com.dammak.mahdi.favourites.FavouriteAdapter
-import com.dammak.mahdi.favourites.FavouritesListViewModel
+import com.dammak.mahdi.R
+import com.dammak.mahdi.domain.Favourite
+import com.dammak.mahdi.ui.FavouriteAdapter
+import com.dammak.mahdi.viewmodels.FavouritesListViewModel
 import com.google.android.material.snackbar.Snackbar
 
 

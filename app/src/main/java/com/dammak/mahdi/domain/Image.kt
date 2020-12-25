@@ -1,4 +1,4 @@
-package com.dammak.mahdi.data
+package com.dammak.mahdi.domain
 
 data class Image(
     val id: String,

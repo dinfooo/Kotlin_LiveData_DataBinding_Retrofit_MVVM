@@ -1,6 +1,6 @@
 package com.dammak.mahdi.network
 
-import com.dammak.mahdi.data.Favourite
+import com.dammak.mahdi.domain.Favourite
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit

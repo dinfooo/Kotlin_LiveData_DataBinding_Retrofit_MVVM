@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".favourites.FavouritesListFragment">
+    tools:context=".ui.FavouritesListFragment">
 
     <data>
 
         <variable
             name="favouritesListViewModel"
-            type="com.dammak.mahdi.favourites.FavouritesListViewModel" />
+            type="com.dammak.mahdi.viewmodels.FavouritesListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

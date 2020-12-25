@@ -8,7 +8,7 @@
 
         <variable
             name="favourite"
-            type="com.dammak.mahdi.data.Favourite" />
+            type="com.dammak.mahdi.domain.Favourite" />
     </data>
 
     <androidx.cardview.widget.CardView

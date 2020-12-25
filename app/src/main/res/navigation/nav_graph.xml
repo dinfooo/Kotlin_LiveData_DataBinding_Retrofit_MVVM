@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.dammak.mahdi.favourites.FavouritesListFragment"
+        android:name="com.dammak.mahdi.ui.FavouritesListFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_favourite_list">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.dammak.mahdi.SecondFragment"
+        android:name="com.dammak.mahdi.ui.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 

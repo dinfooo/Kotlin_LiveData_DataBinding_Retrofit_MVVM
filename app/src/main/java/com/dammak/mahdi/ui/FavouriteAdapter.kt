@@ -1,18 +1,20 @@
-package com.dammak.mahdi.favourites
+package com.dammak.mahdi.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dammak.mahdi.data.Favourite
+import com.dammak.mahdi.domain.Favourite
 import com.dammak.mahdi.databinding.FavouriteViewItemBinding
 
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
  * data, including computing diffs between lists.
  */
-class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHolder>(DiffCallback) {
+class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHolder>(
+    DiffCallback
+) {
 
     /**
      * The FavouriteViewHolder constructor takes the binding variable from the associated
@@ -49,7 +51,9 @@ class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHo
      */
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): FavouriteViewHolder {
-        return FavouriteViewHolder(FavouriteViewItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return FavouriteViewHolder(
+            FavouriteViewItemBinding.inflate(LayoutInflater.from(parent.context))
+        )
     }
 
     /**
