@@ -19,10 +19,16 @@ import com.dammak.mahdi.viewmodels.FavouritesListViewModel
  */
 class FavouritesListFragment : Fragment() {
     /**
-     * Lazily initialize our [FavouritesListViewModel].
+     * One way to delay creation of the viewModel until an appropriate lifecycle method is to use
+     * lazy. This requires that viewModel not be referenced before onActivityCreated, which we
+     * do in this Fragment.
      */
     private val viewModel: FavouritesListViewModel by lazy {
-        ViewModelProvider(this).get(FavouritesListViewModel::class.java)
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onActivityCreated()"
+        }
+        ViewModelProvider(this, FavouritesListViewModel.Factory(activity.application))
+            .get(FavouritesListViewModel::class.java)
     }
 
     override fun onCreateView(
