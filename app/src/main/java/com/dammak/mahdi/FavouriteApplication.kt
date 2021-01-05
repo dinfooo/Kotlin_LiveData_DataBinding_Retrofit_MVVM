@@ -1,11 +1,11 @@
 package com.dammak.mahdi
 
-import android.app.Application
 import android.util.Log
+import androidx.multidex.MultiDexApplication
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
-class FavouriteApplication : Application() {
+class FavouriteApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
