@@ -1,11 +1,11 @@
 package com.dammak.mahdi.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.dammak.mahdi.database.AppDatabase
 import com.dammak.mahdi.repository.FavouriteRepository
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.lang.Exception
 
 class FavouritesListViewModel(application: Application) : AndroidViewModel(application) {
@@ -34,15 +34,14 @@ class FavouritesListViewModel(application: Application) : AndroidViewModel(appli
                 favouriteRepository.refreshFavourite()
                 _status.value =
                     FavouritesApiStatus.DONE
-                Log.d(
-                    FavouritesListViewModel::class.simpleName, "From DataBase -> Favourites list from " +
-                            "database:" +
+                Timber.d(
+                    "From DataBase -> Favourites list from database:" +
                             listFavourite.value.toString()
                 )
             } catch (e: Exception) {
                 _status.value =
                     FavouritesApiStatus.ERROR
-                Log.d("ws response", "error ws :" + e.message)
+                Timber.e("error ws response :" + e.message)
             }
         }
     }
