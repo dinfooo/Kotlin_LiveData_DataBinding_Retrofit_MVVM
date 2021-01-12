@@ -4,9 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.dammak.mahdi.database.AppDatabase
 import com.dammak.mahdi.database.FavouritesLocalDataSource
+import com.dammak.mahdi.database.FavouritesLocalDataSourceImp
 import com.dammak.mahdi.database.asDomainModel
 import com.dammak.mahdi.domain.Favourite
-import com.dammak.mahdi.network.FavouriteRemoteDataSource
+import com.dammak.mahdi.network.FavouritesRemoteDataSource
 import com.dammak.mahdi.network.Api
 import timber.log.Timber
 
@@ -16,8 +17,8 @@ import timber.log.Timber
 class FavouriteRepository(private val database: AppDatabase) {
 
     private val favouritesLocalDataSource: FavouritesLocalDataSource =
-        FavouritesLocalDataSource(database.favouriteDao)
-    private val favouritesRemoteDataSource: FavouriteRemoteDataSource =
+        FavouritesLocalDataSourceImp(database.favouriteDao)
+    private val favouritesRemoteDataSource: FavouritesRemoteDataSource =
         Api.retrofitService
 
     val favourite: LiveData<List<Favourite>> =

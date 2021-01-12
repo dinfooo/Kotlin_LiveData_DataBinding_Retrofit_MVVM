@@ -4,18 +4,10 @@ import androidx.lifecycle.LiveData
 import com.dammak.mahdi.domain.Favourite
 
 /**
- * Data source from db.
+ * Main entry point for accessing local favourites data source.
  */
-class FavouritesLocalDataSource internal constructor(
-    private val favouriteDao: FavouriteDao
-) {
+interface FavouritesLocalDataSource {
 
-    fun getFavourites(): LiveData<List<DatabaseFavourite>> {
-        return favouriteDao.getFavourites()
-    }
-
-    suspend fun insertAll(listFavourite: List<Favourite>) {
-        favouriteDao.insertAll(listFavourite.asDatabaseFavourite())
-    }
-
+    fun getFavourites(): LiveData<List<DatabaseFavourite>>
+    suspend fun insertAll(listFavourite: List<Favourite>)
 }

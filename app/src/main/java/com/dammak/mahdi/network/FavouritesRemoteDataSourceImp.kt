@@ -18,15 +18,15 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 /**
- * Data source from network.
+ * Implementation of the remote data source (network).
  */
-interface FavouriteRemoteDataSource {
+interface FavouritesRemoteDataSourceImp : FavouritesRemoteDataSource {
     @GET("sample")
-    suspend fun getAllFavourites(): List<Favourite>
+    override suspend fun getAllFavourites(): List<Favourite>
 }
 
 object Api {
-    val retrofitService: FavouriteRemoteDataSource by lazy {
-        retrofit.create(FavouriteRemoteDataSource::class.java)
+    val retrofitService: FavouritesRemoteDataSourceImp by lazy {
+        retrofit.create(FavouritesRemoteDataSourceImp::class.java)
     }
 }
