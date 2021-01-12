@@ -17,13 +17,16 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface FavouriteApiService {
+/**
+ * Data source from network.
+ */
+interface FavouriteRemoteDataSource {
     @GET("sample")
     suspend fun getAllFavourites(): List<Favourite>
 }
 
-object FavouritesApi {
-    val retrofitService: FavouriteApiService by lazy {
-        retrofit.create(FavouriteApiService::class.java)
+object Api {
+    val retrofitService: FavouriteRemoteDataSource by lazy {
+        retrofit.create(FavouriteRemoteDataSource::class.java)
     }
 }

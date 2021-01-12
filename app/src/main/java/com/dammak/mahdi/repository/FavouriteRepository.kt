@@ -3,18 +3,25 @@ package com.dammak.mahdi.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.dammak.mahdi.database.AppDatabase
-import com.dammak.mahdi.database.asDatabaseFavourite
+import com.dammak.mahdi.database.FavouritesLocalDataSource
 import com.dammak.mahdi.database.asDomainModel
 import com.dammak.mahdi.domain.Favourite
-import com.dammak.mahdi.network.FavouritesApi
+import com.dammak.mahdi.network.FavouriteRemoteDataSource
+import com.dammak.mahdi.network.Api
 import timber.log.Timber
 
 /**
  * Repository for fetching favourite from the network and storing them on disk
  */
 class FavouriteRepository(private val database: AppDatabase) {
+
+    private val favouritesLocalDataSource: FavouritesLocalDataSource =
+        FavouritesLocalDataSource(database.favouriteDao)
+    private val favouritesRemoteDataSource: FavouriteRemoteDataSource =
+        Api.retrofitService
+
     val favourite: LiveData<List<Favourite>> =
-        Transformations.map(database.favouriteDao.getFavourites()) {
+        Transformations.map(favouritesLocalDataSource.getFavourites()) {
             it.asDomainModel()
         }
 
@@ -30,8 +37,8 @@ class FavouriteRepository(private val database: AppDatabase) {
      * https://stackoverflow.com/questions/60963194/what-does-main-safe-in-kotlin-coroutines
      */
     suspend fun refreshFavourite() {
-        val listFavourite = FavouritesApi.retrofitService.getAllFavourites()
+        val listFavourite = favouritesRemoteDataSource.getAllFavourites()
         Timber.d("Favourites list from WS :" + listFavourite.toString())
-        database.favouriteDao.insertAll(listFavourite.asDatabaseFavourite())
+        favouritesLocalDataSource.insertAll(listFavourite)
     }
 }
