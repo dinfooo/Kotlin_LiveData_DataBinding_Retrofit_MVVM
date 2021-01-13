@@ -1,6 +1,10 @@
 package com.dammak.mahdi.ui
 
+import android.view.View
 import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import com.dammak.mahdi.FakeAndroidTestFavouriteRepository
@@ -9,12 +13,15 @@ import com.dammak.mahdi.ServiceLocator
 import com.dammak.mahdi.domain.Favourite
 import com.dammak.mahdi.domain.Image
 import com.dammak.mahdi.repository.IFavouriteRepository
+import com.levibostian.recyclerviewmatcher.RecyclerViewMatcher
+import com.levibostian.recyclerviewmatcher.RecyclerViewMatcher.Companion.recyclerViewWithId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
+import org.hamcrest.Matcher
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -64,6 +71,20 @@ class FavouritesListFragmentTest {
 
         // WHEN - Details fragment launched to display favourites
         launchFragmentInContainer<FavouritesListFragment>(null, R.style.AppTheme)
+
+        val recyclerViewMatcher: RecyclerViewMatcher =
+            recyclerViewWithId(R.id.recyclerView_favourites_list)
+        val recyclerView: Matcher<View> = withId(R.id.recyclerView_favourites_list)
+
+        onView(recyclerView)
+            .check(matches(isDisplayed()))
+
+        onView(recyclerViewMatcher.viewHolderViewAtPosition(0, R.id.id_image))
+            .check(matches(withText(favourite1.id.toString())))
+        onView(recyclerViewMatcher.viewHolderViewAtPosition(1, R.id.id_image))
+            .check(matches(withText(favourite2.id.toString())))
+        onView(recyclerViewMatcher.viewHolderViewAtPosition(2, R.id.id_image))
+            .check(matches(withText(favourite3.id.toString())))
     }
 
 }
