@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.dammak.mahdi.database.AppDatabase
+import com.dammak.mahdi.database.FavouritesLocalDataSourceImp
+import com.dammak.mahdi.network.Api
 import com.dammak.mahdi.repository.FavouriteRepository
 import retrofit2.HttpException
 import timber.log.Timber
@@ -17,7 +19,8 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters) :
 
     override suspend fun doWork(): Result {
         val database = AppDatabase.getInstance(applicationContext)
-        val repository = FavouriteRepository(database)
+        val repository = FavouriteRepository(FavouritesLocalDataSourceImp(database.favouriteDao),
+            Api.retrofitService)
 
         try {
             repository.refreshFavourite()

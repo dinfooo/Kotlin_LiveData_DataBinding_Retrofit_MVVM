@@ -2,24 +2,19 @@ package com.dammak.mahdi.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.dammak.mahdi.database.AppDatabase
 import com.dammak.mahdi.database.FavouritesLocalDataSource
-import com.dammak.mahdi.database.FavouritesLocalDataSourceImp
 import com.dammak.mahdi.database.asDomainModel
 import com.dammak.mahdi.domain.Favourite
 import com.dammak.mahdi.network.FavouritesRemoteDataSource
-import com.dammak.mahdi.network.Api
 import timber.log.Timber
 
 /**
  * Repository for fetching favourite from the network and storing them on disk
  */
-class FavouriteRepository(private val database: AppDatabase) {
-
-    private val favouritesLocalDataSource: FavouritesLocalDataSource =
-        FavouritesLocalDataSourceImp(database.favouriteDao)
-    private val favouritesRemoteDataSource: FavouritesRemoteDataSource =
-        Api.retrofitService
+class FavouriteRepository(
+    private val favouritesLocalDataSource: FavouritesLocalDataSource,
+    private val favouritesRemoteDataSource: FavouritesRemoteDataSource
+) {
 
     val favourite: LiveData<List<Favourite>> =
         Transformations.map(favouritesLocalDataSource.getFavourites()) {

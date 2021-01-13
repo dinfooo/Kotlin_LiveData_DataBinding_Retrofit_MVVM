@@ -3,6 +3,8 @@ package com.dammak.mahdi.viewmodels
 import android.app.Application
 import androidx.lifecycle.*
 import com.dammak.mahdi.database.AppDatabase
+import com.dammak.mahdi.database.FavouritesLocalDataSourceImp
+import com.dammak.mahdi.network.Api
 import com.dammak.mahdi.repository.FavouriteRepository
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -16,7 +18,10 @@ class FavouritesListViewModel(application: Application) : AndroidViewModel(appli
     /**
      * The data source this ViewModel will fetch results from.
      */
-    private val favouriteRepository = FavouriteRepository(AppDatabase.getInstance(application))
+    private val favouriteRepository = FavouriteRepository(
+        FavouritesLocalDataSourceImp(AppDatabase.getInstance(application).favouriteDao),
+        Api.retrofitService
+    )
     val listFavourite = favouriteRepository.favourite
 
     val status: LiveData<FavouritesApiStatus>
