@@ -14,9 +14,9 @@ import timber.log.Timber
 class FavouriteRepository(
     private val favouritesLocalDataSource: FavouritesLocalDataSource,
     private val favouritesRemoteDataSource: FavouritesRemoteDataSource
-) {
+) : IFavouriteRepository {
 
-    val favourite: LiveData<List<Favourite>> =
+    override val favourite: LiveData<List<Favourite>> =
         Transformations.map(favouritesLocalDataSource.getFavourites()) {
             it.asDomainModel()
         }
@@ -32,7 +32,7 @@ class FavouriteRepository(
      * link :
      * https://stackoverflow.com/questions/60963194/what-does-main-safe-in-kotlin-coroutines
      */
-    suspend fun refreshFavourite() {
+    override suspend fun refreshFavourite() {
         val listFavourite = favouritesRemoteDataSource.getAllFavourites()
         Timber.d("Favourites list from WS :" + listFavourite.toString())
         favouritesLocalDataSource.insertAll(listFavourite)
