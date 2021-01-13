@@ -1,29 +1,16 @@
 package com.dammak.mahdi.viewmodels
 
-import android.app.Application
 import androidx.lifecycle.*
-import com.dammak.mahdi.database.AppDatabase
-import com.dammak.mahdi.database.FavouritesLocalDataSourceImp
-import com.dammak.mahdi.network.Api
-import com.dammak.mahdi.repository.FavouriteRepository
+import com.dammak.mahdi.repository.IFavouriteRepository
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.lang.Exception
 
-class FavouritesListViewModel(application: Application) : AndroidViewModel(application) {
+class FavouritesListViewModel(private val favouriteRepository : IFavouriteRepository) : ViewModel() {
     enum class FavouritesApiStatus { LOADING, ERROR, DONE }
 
     private val _status = MutableLiveData<FavouritesApiStatus>()
-
-    /**
-     * The data source this ViewModel will fetch results from.
-     */
-    private val favouriteRepository = FavouriteRepository(
-        FavouritesLocalDataSourceImp(AppDatabase.getInstance(application).favouriteDao),
-        Api.retrofitService
-    )
     val listFavourite = favouriteRepository.favourite
-
     val status: LiveData<FavouritesApiStatus>
         get() = _status
 
@@ -54,11 +41,11 @@ class FavouritesListViewModel(application: Application) : AndroidViewModel(appli
     /**
      * Factory for constructing FavouritesListViewModel with parameter
      */
-    class Factory(val app: Application) : ViewModelProvider.Factory {
+    class Factory(private val tasksRepository: IFavouriteRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(FavouritesListViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return FavouritesListViewModel(app) as T
+                return FavouritesListViewModel(tasksRepository) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
