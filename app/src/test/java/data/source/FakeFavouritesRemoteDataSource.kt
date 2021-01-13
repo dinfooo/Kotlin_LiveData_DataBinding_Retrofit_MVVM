@@ -1,4 +1,4 @@
-package com.dammak.mahdi.data.source
+package data.source
 
 import com.dammak.mahdi.domain.Favourite
 import com.dammak.mahdi.network.FavouritesRemoteDataSource

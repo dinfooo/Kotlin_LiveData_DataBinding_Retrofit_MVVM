@@ -1,4 +1,4 @@
-package com.dammak.mahdi.data.source
+package data.source
 
 import com.dammak.mahdi.database.DatabaseFavourite
 import com.dammak.mahdi.database.asDatabaseFavourite

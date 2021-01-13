@@ -1,4 +1,4 @@
-package com.dammak.mahdi.data.source
+package data.source
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
