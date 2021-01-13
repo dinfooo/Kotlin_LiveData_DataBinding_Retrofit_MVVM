@@ -3,6 +3,7 @@ package com.dammak.mahdi.work
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.dammak.mahdi.FavouriteApplication
 import com.dammak.mahdi.database.AppDatabase
 import com.dammak.mahdi.database.FavouritesLocalDataSourceImp
 import com.dammak.mahdi.network.Api
@@ -18,9 +19,7 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters) :
     }
 
     override suspend fun doWork(): Result {
-        val database = AppDatabase.getInstance(applicationContext)
-        val repository = FavouriteRepository(FavouritesLocalDataSourceImp(database.favouriteDao),
-            Api.retrofitService)
+        val repository = (applicationContext as FavouriteApplication).taskRepository
 
         try {
             repository.refreshFavourite()

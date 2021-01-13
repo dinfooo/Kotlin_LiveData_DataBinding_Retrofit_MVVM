@@ -11,6 +11,8 @@ buildscript {
         robolectricVersion = '4.3.1'
         archTestingVersion = '2.0.0'
         coroutinesVersion = '1.2.1'
+        junitVersion = '4.12'
+        fragmentVersion = '1.1.0-alpha07'
     }
     repositories {
         google()
