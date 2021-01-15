@@ -6,6 +6,8 @@ import androidx.room.Room
 import com.dammak.mahdi.database.AppDatabase
 import com.dammak.mahdi.database.FavouritesLocalDataSource
 import com.dammak.mahdi.database.FavouritesLocalDataSourceImp
+import com.dammak.mahdi.network.Api
+import com.dammak.mahdi.network.FavouritesApiService
 import com.dammak.mahdi.network.FavouritesRemoteDataSourceImp
 import com.dammak.mahdi.repository.FavouriteRepository
 import com.dammak.mahdi.repository.IFavouriteRepository
@@ -29,7 +31,7 @@ object ServiceLocator {
         val newRepo =
             FavouriteRepository(
                 createFavouritesLocalDataSource(context),
-                FavouritesRemoteDataSourceImp()
+                FavouritesRemoteDataSourceImp(createFavouritesApiService())
             )
         favouriteRepository = newRepo
         return newRepo
@@ -47,6 +49,10 @@ object ServiceLocator {
         ).build()
         database = result
         return result
+    }
+
+    private fun createFavouritesApiService(): FavouritesApiService {
+        return Api.retrofitService
     }
 
     @VisibleForTesting

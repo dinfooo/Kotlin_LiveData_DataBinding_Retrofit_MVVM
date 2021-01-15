@@ -20,9 +20,10 @@ private val retrofit = Retrofit.Builder()
 /**
  * Implementation of the remote data source (network).
  */
-class FavouritesRemoteDataSourceImp : FavouritesRemoteDataSource {
+class FavouritesRemoteDataSourceImp(private val favouritesApiService: FavouritesApiService) :
+    FavouritesRemoteDataSource {
     override suspend fun getAllFavourites(): List<Favourite> {
-        return Api.retrofitService.getAllFavourites()
+        return favouritesApiService.getAllFavourites()
     }
 }
 
