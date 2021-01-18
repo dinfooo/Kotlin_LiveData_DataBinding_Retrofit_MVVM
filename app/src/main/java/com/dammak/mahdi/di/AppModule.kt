@@ -11,20 +11,10 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Qualifier
 import javax.inject.Singleton
-import kotlin.annotation.AnnotationRetention.RUNTIME
 
 @Module
 object AppModule {
-
-    @Qualifier
-    @Retention(RUNTIME)
-    annotation class TasksRemoteDataSource
-
-    @Qualifier
-    @Retention(RUNTIME)
-    annotation class TasksLocalDataSource
 
     @JvmStatic
     @Singleton
