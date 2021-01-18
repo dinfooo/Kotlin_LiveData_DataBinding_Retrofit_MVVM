@@ -2,6 +2,7 @@ package com.dammak.mahdi.database
 
 import androidx.lifecycle.LiveData
 import com.dammak.mahdi.domain.Favourite
+import javax.inject.Inject
 
 /**
  * Concrete implementation of local data source .

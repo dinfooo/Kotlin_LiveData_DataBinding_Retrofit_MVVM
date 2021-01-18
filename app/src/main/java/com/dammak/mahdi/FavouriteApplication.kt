@@ -4,16 +4,26 @@ import android.os.Build
 import android.util.Log
 import androidx.multidex.MultiDexApplication
 import androidx.work.*
-import com.dammak.mahdi.repository.IFavouriteRepository
+import com.dammak.mahdi.di.AppComponent
+import com.dammak.mahdi.di.DaggerAppComponent
 import com.dammak.mahdi.work.RefreshDataWorker
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 import java.util.concurrent.TimeUnit
 
-class FavouriteApplication : MultiDexApplication() {
+open class FavouriteApplication : MultiDexApplication() {
 
-    val taskRepository: IFavouriteRepository
-        get() = ServiceLocator.provideFavouritesRepository(this)
+    // Instance of the AppComponent that will be used by all the Activities in the project
+    val appComponent: AppComponent by lazy {
+        initializeComponent()
+    }
+
+    open fun initializeComponent(): AppComponent {
+        // Creates an instance of AppComponent using its Factory constructor
+        // We pass the applicationContext that will be used as Context in the graph
+        return DaggerAppComponent.factory().create(applicationContext)
+    }
+
     /**
      * onCreate is called before the first screen is shown to the user.
      *

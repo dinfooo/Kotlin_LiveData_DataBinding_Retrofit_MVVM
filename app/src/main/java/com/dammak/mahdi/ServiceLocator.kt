@@ -13,8 +13,6 @@ import com.dammak.mahdi.repository.FavouriteRepository
 import com.dammak.mahdi.repository.IFavouriteRepository
 
 object ServiceLocator {
-    private val lock = Any()
-
     private var database: AppDatabase? = null
 
     @Volatile
@@ -53,18 +51,5 @@ object ServiceLocator {
 
     private fun createFavouritesApiService(): FavouritesApiService {
         return Api.retrofitService
-    }
-
-    @VisibleForTesting
-    fun resetRepository() {
-        synchronized(lock) {
-            // Clear all data to avoid test pollution.
-            database?.apply {
-                clearAllTables()
-                close()
-            }
-            database = null
-            favouriteRepository = null
-        }
     }
 }

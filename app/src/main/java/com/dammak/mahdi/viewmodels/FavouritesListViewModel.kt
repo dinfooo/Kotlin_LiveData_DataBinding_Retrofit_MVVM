@@ -5,8 +5,9 @@ import com.dammak.mahdi.repository.IFavouriteRepository
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.lang.Exception
+import javax.inject.Inject
 
-class FavouritesListViewModel(private val favouriteRepository : IFavouriteRepository) : ViewModel() {
+class FavouritesListViewModel @Inject constructor (private val favouriteRepository : IFavouriteRepository) : ViewModel() {
     enum class FavouritesApiStatus { LOADING, ERROR, DONE }
 
     private val _status = MutableLiveData<FavouritesApiStatus>()
@@ -35,19 +36,6 @@ class FavouritesListViewModel(private val favouriteRepository : IFavouriteReposi
                     FavouritesApiStatus.ERROR
                 Timber.e("error ws response :" + e.message)
             }
-        }
-    }
-
-    /**
-     * Factory for constructing FavouritesListViewModel with parameter
-     */
-    class Factory(private val tasksRepository: IFavouriteRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(FavouritesListViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return FavouritesListViewModel(tasksRepository) as T
-            }
-            throw IllegalArgumentException("Unable to construct viewmodel")
         }
     }
 }

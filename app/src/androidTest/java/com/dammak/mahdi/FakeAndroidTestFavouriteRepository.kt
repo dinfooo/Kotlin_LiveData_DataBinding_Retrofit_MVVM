@@ -4,8 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import com.dammak.mahdi.domain.Favourite
 import com.dammak.mahdi.repository.IFavouriteRepository
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
-class FakeAndroidTestFavouriteRepository : IFavouriteRepository {
+class FakeAndroidTestFavouriteRepository @Inject constructor() : IFavouriteRepository {
 
     var favouriteServiceData: MutableList<Favourite> = mutableListOf()
 

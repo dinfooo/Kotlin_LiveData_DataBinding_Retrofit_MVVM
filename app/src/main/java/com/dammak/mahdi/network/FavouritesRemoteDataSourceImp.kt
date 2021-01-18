@@ -20,7 +20,9 @@ private val retrofit = Retrofit.Builder()
 /**
  * Implementation of the remote data source (network).
  */
-class FavouritesRemoteDataSourceImp(private val favouritesApiService: FavouritesApiService) :
+class FavouritesRemoteDataSourceImp constructor(
+    private val favouritesApiService: FavouritesApiService
+) :
     FavouritesRemoteDataSource {
     override suspend fun getAllFavourites(): List<Favourite> {
         return favouritesApiService.getAllFavourites()
@@ -28,6 +30,9 @@ class FavouritesRemoteDataSourceImp(private val favouritesApiService: Favourites
 }
 
 interface FavouritesApiService {
+    companion object {
+        const val BASE_URL = "http://dinfo.ovh/restapi/"
+    }
     @GET("sample")
     suspend fun getAllFavourites(): List<Favourite>
 }

@@ -1,5 +1,6 @@
 package com.dammak.mahdi.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.dammak.mahdi.FavouriteApplication
@@ -17,26 +19,16 @@ import com.dammak.mahdi.databinding.FragmentFavouriteListBinding
 import com.dammak.mahdi.network.Api
 import com.dammak.mahdi.repository.FavouriteRepository
 import com.dammak.mahdi.viewmodels.FavouritesListViewModel
-
+import javax.inject.Inject
 
 
 /**
  * A simple [Fragment] that display favourites
  */
 class FavouritesListFragment : Fragment() {
-    /**
-     * One way to delay creation of the viewModel until an appropriate lifecycle method is to use
-     * lazy. This requires that viewModel not be referenced before onActivityCreated, which we
-     * do in this Fragment.
-     */
-    private val viewModel: FavouritesListViewModel by lazy {
-        ViewModelProvider(
-            this, FavouritesListViewModel.Factory(
-                (requireContext().applicationContext as FavouriteApplication).taskRepository
-            )
-        )
-            .get(FavouritesListViewModel::class.java)
-    }
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel by viewModels<FavouritesListViewModel> { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,4 +50,11 @@ class FavouritesListFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
     }
+
+    override fun onAttach(context: Context) {
+        (requireActivity().application as FavouriteApplication).appComponent
+            .favouriteListComponent().create().inject(this)
+        super.onAttach(context)
+    }
+
 }

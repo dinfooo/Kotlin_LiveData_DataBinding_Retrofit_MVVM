@@ -7,11 +7,13 @@ import com.dammak.mahdi.database.asDomainModel
 import com.dammak.mahdi.domain.Favourite
 import com.dammak.mahdi.network.FavouritesRemoteDataSource
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * Repository for fetching favourite from the network and storing them on disk
  */
-class FavouriteRepository(
+// @Inject lets Dagger know how to create instances of this object
+class FavouriteRepository @Inject constructor(
     private val favouritesLocalDataSource: FavouritesLocalDataSource,
     private val favouritesRemoteDataSource: FavouritesRemoteDataSource
 ) : IFavouriteRepository {
