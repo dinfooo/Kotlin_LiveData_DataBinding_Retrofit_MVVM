@@ -3,7 +3,7 @@ package viewmodels
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.dammak.mahdi.domain.Favourite
 import com.dammak.mahdi.domain.Image
-import com.dammak.mahdi.viewmodels.FavouritesListViewModel
+import com.dammak.mahdi.viewmodels.FavouriteViewModel
 import data.source.FakeTestFavouriteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -14,7 +14,7 @@ import org.hamcrest.core.IsEqual
 import org.junit.*
 
 @ExperimentalCoroutinesApi
-class FavouritesListViewModelTest {
+class FavouriteViewModelTest {
 
     private val dispatcher = TestCoroutineDispatcher()
     // Use a fake repository to be injected into the viewmodel
@@ -22,7 +22,7 @@ class FavouritesListViewModelTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
     // Subject under test
-    private lateinit var favouritesListViewModel: FavouritesListViewModel
+    private lateinit var favouriteViewModel: FavouriteViewModel
 
     val favourite1 = Favourite(
         "2018-10-27T03:56:30.000Z", 995,
@@ -45,14 +45,14 @@ class FavouritesListViewModelTest {
 
         favouritesRepository.addFavourite(favourite1, favourite2, favourite3)
 
-        favouritesListViewModel = FavouritesListViewModel(favouritesRepository)
+        favouriteViewModel = FavouriteViewModel(favouritesRepository)
 
     }
 
     @Test
     fun testGetListFavourite() {
         Assert.assertThat(
-            favouritesListViewModel.listFavourite.value,
+            favouriteViewModel.listFavourite.value,
             IsEqual(listOf(favourite1, favourite2, favourite3))
         )
     }
@@ -60,8 +60,8 @@ class FavouritesListViewModelTest {
     @Test
     fun testGetStatus() {
         Assert.assertThat(
-            favouritesListViewModel.status.value,
-            IsEqual(FavouritesListViewModel.FavouritesApiStatus.DONE)
+            favouriteViewModel.status.value,
+            IsEqual(FavouriteViewModel.FavouritesApiStatus.DONE)
         )
     }
 

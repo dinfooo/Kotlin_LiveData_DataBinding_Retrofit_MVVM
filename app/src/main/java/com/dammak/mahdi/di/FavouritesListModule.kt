@@ -1,7 +1,7 @@
 package com.dammak.mahdi.di
 
 import androidx.lifecycle.ViewModel
-import com.dammak.mahdi.viewmodels.FavouritesListViewModel
+import com.dammak.mahdi.viewmodels.FavouriteViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -11,6 +11,6 @@ abstract class FavouritesListModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(FavouritesListViewModel::class)
-    abstract fun bindViewModel(viewmodel: FavouritesListViewModel): ViewModel
+    @ViewModelKey(FavouriteViewModel::class)
+    abstract fun bindViewModel(viewmodel: FavouriteViewModel): ViewModel
 }

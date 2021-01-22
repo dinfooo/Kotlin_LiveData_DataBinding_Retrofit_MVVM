@@ -28,14 +28,14 @@ interface AppComponent {
         fun create(@BindsInstance applicationContext: Context): AppComponent
     }
 
-    fun favouriteListComponent(): FavouritesListComponent.Factory
+    fun favouriteComponent(): FavouriteComponent.Factory
 
     val favouriteRepository: IFavouriteRepository
 }
 
 @Module(
     subcomponents = [
-        FavouritesListComponent::class
+        FavouriteComponent::class
     ]
 )
 object SubcomponentsModule

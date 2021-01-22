@@ -6,11 +6,21 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.dammak.mahdi.FavouriteApplication
 import com.dammak.mahdi.R
+import com.dammak.mahdi.di.FavouriteComponent
 
 class MainActivity : AppCompatActivity() {
 
+    // Stores an instance of FavouriteComponent so that its Fragments can access it
+    lateinit var favouriteComponent: FavouriteComponent
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Creates an instance of Favourite component by grabbing the factory from the app graph
+        favouriteComponent = (application as FavouriteApplication).appComponent.favouriteComponent()
+            .create()
+        // Injects this activity to the just created favourite component
+        favouriteComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))

@@ -12,21 +12,30 @@ import com.dammak.mahdi.databinding.FavouriteViewItemBinding
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
  * data, including computing diffs between lists.
  */
-class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHolder>(
+class FavouriteAdapter(
+    private val listener: FavouriteSelectedListener
+) : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHolder>(
     DiffCallback
 ) {
+
+    interface FavouriteSelectedListener {
+        fun onFavouriteSelected(favourite: Favourite)
+    }
 
     /**
      * The FavouriteViewHolder constructor takes the binding variable from the associated
      * FavouriteViewItem, which nicely gives it access to the full [Favourite] information.
      */
-    class FavouriteViewHolder(private var binding: FavouriteViewItemBinding):
-            RecyclerView.ViewHolder(binding.root) {
+    inner class FavouriteViewHolder(private var binding: FavouriteViewItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(favourite: Favourite) {
             binding.favourite = favourite
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
             binding.executePendingBindings()
+            binding.root.setOnClickListener {
+                listener.onFavouriteSelected(favourite)
+            }
         }
     }
 

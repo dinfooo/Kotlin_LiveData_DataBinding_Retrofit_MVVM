@@ -1,19 +1,24 @@
 package com.dammak.mahdi.viewmodels
 
 import androidx.lifecycle.*
+import com.dammak.mahdi.di.ActivityScope
+import com.dammak.mahdi.domain.Favourite
 import com.dammak.mahdi.repository.IFavouriteRepository
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.lang.Exception
 import javax.inject.Inject
 
-class FavouritesListViewModel @Inject constructor (private val favouriteRepository : IFavouriteRepository) : ViewModel() {
+// Scopes this ViewModel to components that use @ActivityScope
+@ActivityScope
+class FavouriteViewModel @Inject constructor (private val favouriteRepository : IFavouriteRepository) : ViewModel() {
     enum class FavouritesApiStatus { LOADING, ERROR, DONE }
 
     private val _status = MutableLiveData<FavouritesApiStatus>()
     val listFavourite = favouriteRepository.favourite
     val status: LiveData<FavouritesApiStatus>
         get() = _status
+    private val _selectedFavourite = MutableLiveData<Favourite>()
 
     init {
         getFavouriteList()
@@ -37,5 +42,11 @@ class FavouritesListViewModel @Inject constructor (private val favouriteReposito
                 Timber.e("error ws response :" + e.message)
             }
         }
+    }
+
+    fun getSelectedFavourite() = _selectedFavourite.value
+
+    fun setSelectedFavourite(favourite: Favourite) {
+        _selectedFavourite.value = favourite
     }
 }

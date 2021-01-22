@@ -10,25 +10,25 @@ import com.bumptech.glide.request.RequestOptions
 import com.dammak.mahdi.R
 import com.dammak.mahdi.domain.Favourite
 import com.dammak.mahdi.ui.FavouriteAdapter
-import com.dammak.mahdi.viewmodels.FavouritesListViewModel
+import com.dammak.mahdi.viewmodels.FavouriteViewModel
 import com.google.android.material.snackbar.Snackbar
 
 
 @BindingAdapter("favouritesApiStatus")
 fun bindStatus(
     statusImageView: ImageView,
-    status: FavouritesListViewModel.FavouritesApiStatus?
+    status: FavouriteViewModel.FavouritesApiStatus?
 ) {
     when (status) {
-        FavouritesListViewModel.FavouritesApiStatus.LOADING -> {
+        FavouriteViewModel.FavouritesApiStatus.LOADING -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.loading_animation)
         }
-        FavouritesListViewModel.FavouritesApiStatus.ERROR -> {
+        FavouriteViewModel.FavouritesApiStatus.ERROR -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
-        FavouritesListViewModel.FavouritesApiStatus.DONE -> {
+        FavouriteViewModel.FavouritesApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
     }
@@ -41,22 +41,6 @@ fun bindRecyclerView(
 ) {
     val adapter = recyclerView.adapter as FavouriteAdapter
     adapter.submitList(data)
-}
-
-@BindingAdapter("android:onClick")
-fun setOnClick(
-    view: View,
-    favourite: Favourite
-) {
-    val clickListener = View.OnClickListener { v ->
-        v?.let {
-            Snackbar.make(
-                it, "Click detected on favourite ${favourite.id}",
-                Snackbar.LENGTH_LONG
-            ).setAction("Action", null).show()
-        }
-    }
-    view.setOnClickListener(clickListener)
 }
 
 @BindingAdapter("imageUrl")

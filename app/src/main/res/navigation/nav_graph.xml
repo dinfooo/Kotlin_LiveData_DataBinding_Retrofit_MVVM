@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.dammak.mahdi.ui.SecondFragment"
+        android:name="com.dammak.mahdi.ui.DetailsFavouriteFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_details_favourite">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

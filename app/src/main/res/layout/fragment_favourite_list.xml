@@ -8,7 +8,7 @@
 
         <variable
             name="favouritesListViewModel"
-            type="com.dammak.mahdi.viewmodels.FavouritesListViewModel" />
+            type="com.dammak.mahdi.viewmodels.FavouriteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

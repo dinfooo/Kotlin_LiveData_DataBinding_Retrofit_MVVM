@@ -18,7 +18,6 @@
         android:layout_margin="5dp"
         android:clickable="true"
         android:foreground="?selectableItemBackground"
-        android:onClick="@{favourite}"
         card_view:cardBackgroundColor="#81C784"
         card_view:cardCornerRadius="12dp"
         card_view:cardElevation="3dp"
