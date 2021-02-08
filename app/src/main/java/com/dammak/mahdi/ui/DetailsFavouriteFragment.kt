@@ -58,8 +58,8 @@ class DetailsFavouriteFragment : Fragment() {
     }
 
     private fun getSelectedFavourites() {
-        viewModel.getSelectedFavourite()?.let { favourite ->
-            binding.textviewIdImage.text = favourite.id.toString()
+        viewModel.navigateToDetails.value?.let {
+            binding.textviewIdImage.text = it.peekContent().id.toString()
         }
     }
 }

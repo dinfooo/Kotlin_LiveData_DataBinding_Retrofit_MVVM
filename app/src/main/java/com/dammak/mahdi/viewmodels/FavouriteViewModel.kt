@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.dammak.mahdi.di.ActivityScope
 import com.dammak.mahdi.domain.Favourite
 import com.dammak.mahdi.repository.IFavouriteRepository
+import com.dammak.mahdi.util.Event
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.lang.Exception
@@ -18,7 +19,9 @@ class FavouriteViewModel @Inject constructor (private val favouriteRepository : 
     val listFavourite = favouriteRepository.favourite
     val status: LiveData<FavouritesApiStatus>
         get() = _status
-    private val _selectedFavourite = MutableLiveData<Favourite>()
+    private val _navigateToDetails = MutableLiveData<Event<Favourite>>()
+    val navigateToDetails : LiveData<Event<Favourite>>
+        get() = _navigateToDetails
 
     init {
         getFavouriteList()
@@ -44,9 +47,8 @@ class FavouriteViewModel @Inject constructor (private val favouriteRepository : 
         }
     }
 
-    fun getSelectedFavourite() = _selectedFavourite.value
-
     fun setSelectedFavourite(favourite: Favourite) {
-        _selectedFavourite.value = favourite
+        // Trigger the event by setting a new Event as a new value
+        _navigateToDetails.value = Event(favourite)
     }
 }
