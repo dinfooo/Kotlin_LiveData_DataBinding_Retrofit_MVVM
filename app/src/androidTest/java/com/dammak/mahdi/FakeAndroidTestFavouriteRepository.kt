@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class FakeAndroidTestFavouriteRepository @Inject constructor() : IFavouriteRepository {
 
-    var favouriteServiceData: MutableList<Favourite> = mutableListOf()
+    private val favouriteServiceData: MutableList<Favourite> = mutableListOf()
 
     override val favourite: MutableLiveData<List<Favourite>>
         get() = MutableLiveData(favouriteServiceData)
@@ -17,10 +17,15 @@ class FakeAndroidTestFavouriteRepository @Inject constructor() : IFavouriteRepos
         favourite.postValue(favouriteServiceData)
     }
 
-    fun addFavourite(vararg favourites: Favourite) {
+    suspend fun addFavourite(vararg favourites: Favourite) {
         for (favourite in favourites) {
             favouriteServiceData.add(favourite)
         }
-        runBlocking { refreshFavourite() }
+        refreshFavourite()
+    }
+
+    suspend fun deleteAllFavourite() {
+        favouriteServiceData.clear()
+        refreshFavourite()
     }
 }

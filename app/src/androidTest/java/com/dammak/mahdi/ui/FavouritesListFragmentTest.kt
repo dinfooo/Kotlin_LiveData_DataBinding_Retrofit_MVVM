@@ -14,6 +14,7 @@ import com.dammak.mahdi.R
 import com.dammak.mahdi.domain.Favourite
 import com.dammak.mahdi.domain.Image
 import com.dammak.mahdi.repository.IFavouriteRepository
+import com.dammak.mahdi.util.deleteAllFavouriteBlocking
 import com.levibostian.recyclerviewmatcher.RecyclerViewMatcher
 import com.levibostian.recyclerviewmatcher.RecyclerViewMatcher.Companion.recyclerViewWithId
 import kotlinx.coroutines.Dispatchers
@@ -40,6 +41,7 @@ class FavouritesListFragmentTest {
         Dispatchers.setMain(dispatcher)
         repository = ApplicationProvider.getApplicationContext<FavouriteApplication>()
             .appComponent.favouriteRepository
+        (repository as FakeAndroidTestFavouriteRepository).deleteAllFavouriteBlocking()
     }
 
     @After
