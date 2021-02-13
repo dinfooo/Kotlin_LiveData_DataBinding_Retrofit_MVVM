@@ -1,4 +1,4 @@
-# Favourite Cat :
+# Favourite Cat   :smiley_cat: :
 
 
 **Favourite Cat**  is a sample Android application built to demonstrate use of *Modern Android development* tools. Dedicated to all Android Developers .
@@ -65,6 +65,18 @@ This app uses [***MVVM (Model View View-Model)***](https://developer.android.com
 ## Discuss 💬
 
 Have any questions, doubts or want to present your opinions, views? You're always welcome. You can [start discussions](https://github.com/dinfooo/Kotlin_LiveData_DataBinding_Retrofit_MVVM/discussions).
+
+## References
+
+- [Codelabs](https://codelabs.developers.google.com/) - Google Developers Codelabs provide a guided, tutorial, hands-on coding experience
+  - [Getting data from the internet](https://developer.android.com/codelabs/kotlin-android-training-internet-data#0)
+  - [Loading and displaying images from the Internet](https://developer.android.com/codelabs/kotlin-android-training-internet-images#0)
+  - [Repository](https://developer.android.com/codelabs/kotlin-android-training-repository/#0)
+  - [WorkManager](https://developer.android.com/codelabs/kotlin-android-training-work-manager#0)
+  - [Using Dagger in your Android app - Kotlin](https://developer.android.com/codelabs/android-dagger?authuser=1#0)
+  - [Advanced Android in Kotlin : Introduction to Test Doubles and Dependency Injection](https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-test-doubles#0)
+  
+- [Android Architecture Blueprints v2](https://github.com/android/architecture-samples/tree/dev-dagger)
 
 ## License
 ```
