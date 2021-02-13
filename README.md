@@ -1,4 +1,4 @@
-# Favourite Cat  :tw-1f431:
+# Favourite Cat :
 
 
 **Favourite Cat**  is a sample Android application built to demonstrate use of *Modern Android development* tools. Dedicated to all Android Developers .
@@ -33,27 +33,27 @@ It simply loads favourite cats data from network and stores it in the device's l
     
     com.dammak.mahdi    # Root Package
     .
-    ├── database               # Room database, Data Access Object , Local data source
+    ├── database        # Room database, Data Access Object , Local data source
     │
     |
-    ├── di                           # Dependency Injection
+    ├── di              # Dependency Injection
     |
-    ├── domain                 # Model classes
+    ├── domain          # Model classes
     │
     |
-    ├── network                # Retrofit API for remote end point | Remote data source
+    ├── network         # Retrofit API for remote end point | Remote data source
     |
-    ├── repository            # Repository
+    ├── repository      # Repository
     |
-    ├── ui                         # Activity/Fragment
-    │
-     |
-    ├── utils                     # Utility Classes / Kotlin extensions
-    |
-    ├── viewmodels        # ViewModel
+    ├── ui              # Activity/Fragment
     │
     |
-    └── work                   # WorkManager
+    ├── utils           # Utility Classes / Kotlin extensions
+    |
+    ├── viewmodels      # ViewModel
+    │
+    |
+    └── work            # WorkManager
 
 
 ## Architecture
