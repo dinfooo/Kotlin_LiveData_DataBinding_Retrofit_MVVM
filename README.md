@@ -78,6 +78,7 @@ Have any questions, doubts or want to present your opinions, views? You're alway
   - [Advanced Android in Kotlin : Introduction to Test Doubles and Dependency Injection](https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-test-doubles#0)
   
 - [Android Architecture Blueprints v2](https://github.com/android/architecture-samples/tree/dev-dagger)
+- [LiveData with SnackBar, Navigation and other events (the SingleLiveEvent case)](https://medium.com/androiddevelopers/livedata-with-snackbar-navigation-and-other-events-the-singleliveevent-case-ac2622673150)
 
 ## License
 ```
